@@ -232,7 +232,7 @@ class Program
     {
         try
         {
-            Console.WriteLine("Создание файла с рандомными значениями");
+            Console.WriteLine("Создание файла со значениями");
 
             Console.WriteLine("Введите размерность массива:");
             int size = int.Parse(Console.ReadLine());
@@ -244,12 +244,28 @@ class Program
 
             if (choice == 1)
             {
+                Console.WriteLine("Введите диапазон ОТ:");
+                int min = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите диапазон ДО:");
+                int max = Convert.ToInt32(Console.ReadLine());
+                if (min > max)
+                {
+                    Console.WriteLine("Ошибка: диапазон ОТ должен быть меньше или равен диапазону ДО.");
+                    return;
+                }
+                //// генерируем случайные числа
+                //Random rnd = new Random();
+                //for (int i = 0; i < n; i++)
+                //{
+                //    int num = rnd.Next(min, max + 1);
+                //    arr[i] = num;
+                //}
                 Random rand = new Random();
                 using (StreamWriter sw = new StreamWriter("input.txt"))
                 {
                     for (int i = 0; i < size; i++)
                     {
-                        sw.WriteLine(rand.Next(0, 100));
+                        sw.WriteLine(rand.Next(min,max+1));
                     }
                 }
             }
@@ -259,6 +275,7 @@ class Program
                  {
                     try
                     {
+                        
                         for (int i = 0; i < size; i++)
                         {
                             Console.WriteLine("Введите {0} элемент массива:", i + 1);
